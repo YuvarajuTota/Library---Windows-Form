@@ -164,6 +164,7 @@ namespace WindowsFormsAppUsecase
                 errEmail.ForeColor = Color.Red;
                 errEmail.Text = @"Invalid Email format! Email should ends with @gmail.com";
                 errorProvider1.SetError(txtEmail, "Please provide valid Email");
+                // Test
             }
             
          
