@@ -8,15 +8,11 @@ namespace WindowsFormsAppUsecase
 {
     public partial class UserRegistration : Form
     {
-          private TextBox txtEmailAddress;
-
+        private TextBox txtEmailAddress;
         public UserRegistration()
         {
             InitializeComponent();
-            
         }
-
-      
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtFirstName.Text) || string.IsNullOrEmpty(txtLastName.Text) ||
@@ -29,7 +25,6 @@ namespace WindowsFormsAppUsecase
                 }
                 MessageBox.Show(@"Please fill in all fields to submit the form");
             }
-
             else
             {
                 MessageBox.Show(@"Registration Successful...");
@@ -41,22 +36,18 @@ namespace WindowsFormsAppUsecase
                     string sql =
                         "INSERT INTO user (FirstName, LastName, EmailAddress, Password, ConfirmPassword) VALUES (@FirstName, @LastName, @EmailAddress, @Password, @ConfirmPassword)";
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
-
                     // Set parameters
                     cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                     cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                     cmd.Parameters.AddWithValue("@EmailAddress", txtEmailAddress.Text);
                     cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                     cmd.Parameters.AddWithValue("@ConfirmPassword", txtCnf.Text);
-
                     MySqlDataReader reader = cmd.ExecuteReader();
-
                     txtFirstName.Text = "";
                     txtLastName.Text = "";
                     txtEmailAddress.Text = "";
                     txtPassword.Text = "";
                     txtCnf.Text = "";
-
                     LoginPage loginPage = new LoginPage();
                     this.Hide();
                     loginPage.Show();
@@ -66,38 +57,28 @@ namespace WindowsFormsAppUsecase
                     Console.WriteLine(ex);
                     throw;
                 }
-
                 finally
                 {
                     connection.Close();
                 }
             }
         }
-
         private void label10_Click(object sender, EventArgs e)
         {
             LoginPage loginPage = new LoginPage();
             this.Hide();
             loginPage.Show();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             string exitMessage = "Are you sure! You want to exit. Your data will be lost...";
-
             DialogResult userExit;
-
             userExit = MessageBox.Show(exitMessage, @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
             if (userExit == DialogResult.Yes)
             {
                 Application.Exit();
             }
         }
-
-
-        
-
         private void txtEmailAddress_TextChanged(object sender, EventArgs e)
         {
 
@@ -108,17 +89,13 @@ namespace WindowsFormsAppUsecase
                 errEmail.Text = @"Valid Email";
                 errorProvider1.SetError(txtEmailAddress, "");
                 errorProvider2.SetError(txtEmailAddress, "Valid Email");
-
             }
             else
             {
                 errEmail.ForeColor = Color.Red;
                 errEmail.Text = @"Invalid Email format! Email should ends with @gmail.com";
-
                 errorProvider1.SetError(txtEmailAddress, "Please provide valid Email");
-
             }
-
             string query = "Select EmailAddress from user where EmailAddress = @EmailAddress";
             string connectionString = "server=localhost;uid=root;pwd=Yuvi@12345;database=ado";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -141,17 +118,12 @@ namespace WindowsFormsAppUsecase
                         {
                             userEmail.Text = "";
                             errorProvider1.SetError(txtEmailAddress, "");
-                           // errorProvider2.SetError(txtEmailAddress, "Valid Email");
                         }
                     }
                 }
-                
                 connection.Close();
             }
-            
-            
         }
-
         private void txtCnf_TextChanged(object sender, EventArgs e)
         {
             var password = txtPassword.Text;
@@ -171,7 +143,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider2.SetError(txtCnf, "");
             }
         }
-
         private void txtFirstName_Validating(object sender, CancelEventArgs e)
         {
             var firstName = txtFirstName.Text;
@@ -187,7 +158,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtFirstName, "");
             }
         }
-
         private void txtLastName_Validating(object sender, CancelEventArgs e)
         {
             var lastName = txtLastName.Text;
@@ -203,7 +173,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtLastName, "");
             }
         }
-
         private void txtEmailAddress_Validating(object sender, CancelEventArgs e)
         {
             var email = txtEmailAddress.Text;
@@ -219,7 +188,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtEmailAddress, "");
             }
         }
-
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
             var password = txtPassword.Text;
@@ -235,7 +203,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtPassword, "");
             }
         }
-
         private void txtCnf_Validating(object sender, CancelEventArgs e)
         {
             var cnf = txtCnf.Text;
@@ -251,7 +218,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtCnf, "");
             }
         }
-
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             var password = txtPassword.Text;
@@ -271,9 +237,5 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtPassword, "Invalid password format");
             }
         }
-
-
-       
     }
-
 }

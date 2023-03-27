@@ -7,7 +7,6 @@ namespace WindowsFormsAppUsecase
     {
         private TextBox txtBkAt;
         private TextBox txtBkCode;
-
         public LibraryHomeScreen()
         {
             InitializeComponent();
@@ -21,7 +20,6 @@ namespace WindowsFormsAppUsecase
         bool mode = true;
         string sql;
         
-
         public void Load()
         {
             try
@@ -31,7 +29,6 @@ namespace WindowsFormsAppUsecase
                 connection.Open();
                 read = cmd.ExecuteReader();
                 dataGridView1.Rows.Clear();
-
                 while (read.Read())
                 {
                     dataGridView1.Rows.Add(read[0], read[1], read[2], read[3]);
@@ -50,7 +47,6 @@ namespace WindowsFormsAppUsecase
             cmd = new MySqlCommand(sql, connection);
             connection.Open();
             read = cmd.ExecuteReader();
-
             while (read.Read())
             {
                 txtBkCode.Text = read[0].ToString();
@@ -65,8 +61,7 @@ namespace WindowsFormsAppUsecase
             var code = txtBkCode.Text;
             var title = txtBkTl.Text;
             var author = txtBkAt.Text;
-            var category = txtBkCg.Text;    
-
+            var category = txtBkCg.Text;
             if (mode == true)
             {
                 sql =
@@ -87,13 +82,11 @@ namespace WindowsFormsAppUsecase
             }
             else
             {
-                
                 code = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 sql =
                     "Update library set BookAuthor = @BookAuthor, BookTitle = @BookTitle, BookCategory = @BookCategory where BookCode = @BookCode";
                     connection.Open();
                 cmd = new MySqlCommand(sql, connection);
-               
                 cmd.Parameters.AddWithValue("@BookCode", txtBkCode.Text);
                 cmd.Parameters.AddWithValue("@BookAuthor", txtBkAt.Text);
                 cmd.Parameters.AddWithValue("@BookTitle", txtBkTl.Text);
@@ -107,7 +100,6 @@ namespace WindowsFormsAppUsecase
                 btnSave.Text = @"SAVE";
                 mode = true;
             }
-            
             connection.Close();
         }
 
@@ -116,7 +108,6 @@ namespace WindowsFormsAppUsecase
         
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
             if (e.ColumnIndex == dataGridView1.Columns["Edit"].Index && e.RowIndex >= 0)
             {
                 mode = false;
@@ -137,16 +128,12 @@ namespace WindowsFormsAppUsecase
                 cmd.ExecuteNonQuery();
                 MessageBox.Show(@"Book Deleted Successfully");   
                 connection.Close();
-
             }
         }
-
-        
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Load();
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtBkCode.Clear();
@@ -155,17 +142,12 @@ namespace WindowsFormsAppUsecase
             txtBkCg.Text = "";
             btnSave.Text = @"SAVE";
             mode = true;
-
         }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             string exitMessage = "Are you sure! You want to exit!";
-
             DialogResult userExit;
-            
             userExit = MessageBox.Show(exitMessage, @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
             if (userExit == DialogResult.Yes)
             {
                 Application.Exit();

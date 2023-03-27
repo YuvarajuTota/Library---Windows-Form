@@ -12,9 +12,6 @@ namespace WindowsFormsAppUsecase
         {
             InitializeComponent();
         }
-
-    
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPass.Text))
@@ -28,7 +25,6 @@ namespace WindowsFormsAppUsecase
                     conn);
                 cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Password", txtPass.Text);
-            
                 try
                 {
                     conn.Open();
@@ -39,12 +35,10 @@ namespace WindowsFormsAppUsecase
                         conn.Close();
                         txtEmail.Clear();
                         txtPass.Clear();
-                    
                         this.Hide();
                         LibraryHomeScreen libraryHomeScreen = new LibraryHomeScreen();
                         libraryHomeScreen.Show();
                     }
-            
                     else
                     {
                         MessageBox.Show(@"Invalid Login details! Please try again");
@@ -57,24 +51,16 @@ namespace WindowsFormsAppUsecase
                 }
             }
         }
-        
-        
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             string exitMessage = "Are you sure! You want to exit!";
-
             DialogResult userExit;
-            
             userExit = MessageBox.Show(exitMessage, @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
             if (userExit == DialogResult.Yes)
             {
                 Application.Exit();
             }
         }
-
-
         private void txtEmail_Validating(object sender, CancelEventArgs e)
         {
             var mail = txtEmail.Text;
@@ -88,11 +74,8 @@ namespace WindowsFormsAppUsecase
             {
                 errEmail.Text = "";
                 errorProvider1.SetError(txtEmail, "");
-            } 
-          
-            
+            }
         }
-
         private void txtPass_Validating(object sender, CancelEventArgs e)
         {
             var password = txtPass.Text;
@@ -108,7 +91,6 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtPass, "");
             }
         }
-
         private void UserCheck()
         {
             string connectionstring = "server = localhost;uid=root;pwd=Yuvi@12345;database=ado";
@@ -143,12 +125,9 @@ namespace WindowsFormsAppUsecase
             {
                 connection.Close();
             }
-            
         }
-
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            
             UserCheck();
             var pattern = @"^[a-zA-Z0-9.]+@gmail\.com$";
             if (Regex.IsMatch(txtEmail.Text, pattern))
@@ -157,20 +136,13 @@ namespace WindowsFormsAppUsecase
                 errEmail.Text = @"Valid Email";
                 errorProvider1.SetError(txtEmail, "");
                 errorProvider2.SetError(txtEmail, "Valid Email");
-
             }
             else
             {
                 errEmail.ForeColor = Color.Red;
                 errEmail.Text = @"Invalid Email format! Email should ends with @gmail.com";
                 errorProvider1.SetError(txtEmail, "Please provide valid Email");
-                // Test
             }
-            
-         
-           
         }
-
-      
     }
 }
