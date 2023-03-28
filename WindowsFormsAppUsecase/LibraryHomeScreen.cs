@@ -12,14 +12,12 @@ namespace WindowsFormsAppUsecase
             InitializeComponent();
             Load();
         }
-
         MySqlConnection connection = new MySqlConnection("server=localhost; uid=root; pwd=Yuvi@12345; database=ado");
         MySqlCommand cmd;
         MySqlDataReader read;
         string code;
         bool mode = true;
         string sql;
-        
         public void Load()
         {
             try
@@ -40,7 +38,6 @@ namespace WindowsFormsAppUsecase
                 MessageBox.Show(e.Message);
             }
         }
-
         public void getCode(string code)
         {
             sql = "select * from library where BookCode = '" + code + "' ";
@@ -102,10 +99,6 @@ namespace WindowsFormsAppUsecase
             }
             connection.Close();
         }
-
-        
-        
-        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridView1.Columns["Edit"].Index && e.RowIndex >= 0)
