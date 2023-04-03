@@ -213,23 +213,40 @@ namespace WindowsFormsAppUsecase
         }
         private void label5_Click(object sender, EventArgs e)
         {
+            string password = GenerateRandomPassword();
             string fromEmail = "yuvarajutota123@gmail.com";
-            string password = "cbmazedezhtcgsqn";
+            string password1 = "cbmazedezhtcgsqn";
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromEmail);
             message.Subject = "Reset Password";
             message.To.Add(new MailAddress("yuvaraju.tota@amzur.com"));
-            message.Body = "<html><body> Testing purpose </body></html>";
+            message.Body = "Your password is " + password;
             message.IsBodyHtml = true;
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential(fromEmail, password),
+                Credentials = new NetworkCredential(fromEmail, password1),
                 EnableSsl = true,
             };
             smtpClient.Send(message);
             MessageBox.Show(@"Password has been sent to your Email!...");
+        }
+
+        private string GenerateRandomPassword()
+        {
+            string pattern = "^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$";
+            Random random = new Random();
+            string password;
+            do
+            {
+                password = "";
+                for (int i = 0; i < 12; i++)
+                {
+                    password += (char)random.Next(33, 126);
+                }
+            } while (!Regex.IsMatch(password,password));
+            return password;
         }
     }
 }
