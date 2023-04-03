@@ -11,6 +11,6 @@ Global
 		{FED245A8-E721-494F-95FC-9CA71508B21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FED245A8-E721-494F-95FC-9CA71508B21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FED245A8-E721-494F-95FC-9CA71508B21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FED245A8-E721-494F-95FC-9CA71508B21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED245A8-E721-494F-95FC-9CA71508B21C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

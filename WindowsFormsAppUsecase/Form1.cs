@@ -9,16 +9,18 @@ namespace WindowsFormsAppUsecase
         {
             InitializeComponent();
         }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            UserRegistration registrationpage = new UserRegistration();
-            this.Hide();
+            var registrationpage = new UserRegistration();
+            Hide();
             registrationpage.Show();
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            LoginPage loginPage1 = new LoginPage();
-            this.Hide();
+            var loginPage1 = new LoginPage();
+            Hide();
             loginPage1.Show();
         }
     }

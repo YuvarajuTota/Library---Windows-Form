@@ -47,6 +47,7 @@ namespace WindowsFormsAppUsecase
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errUserCheck = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
@@ -64,7 +65,7 @@ namespace WindowsFormsAppUsecase
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(289, 130);
+            this.label2.Location = new System.Drawing.Point(277, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 24);
             this.label2.TabIndex = 2;
@@ -107,7 +108,7 @@ namespace WindowsFormsAppUsecase
             this.btnLogin.BackColor = System.Drawing.Color.Lime;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.Black;
-            this.btnLogin.Location = new System.Drawing.Point(489, 276);
+            this.btnLogin.Location = new System.Drawing.Point(492, 312);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(106, 40);
             this.btnLogin.TabIndex = 6;
@@ -119,7 +120,7 @@ namespace WindowsFormsAppUsecase
             // 
             this.btnCancel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(322, 276);
+            this.btnCancel.Location = new System.Drawing.Point(322, 312);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 40);
             this.btnCancel.TabIndex = 7;
@@ -176,12 +177,24 @@ namespace WindowsFormsAppUsecase
             this.errUserCheck.Size = new System.Drawing.Size(352, 17);
             this.errUserCheck.TabIndex = 11;
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(277, 274);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 23);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Forgot Password";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.errUserCheck);
             this.Controls.Add(this.errPass);
             this.Controls.Add(this.errEmail);
@@ -202,6 +215,8 @@ namespace WindowsFormsAppUsecase
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label4;
 
         private System.Windows.Forms.Label errUserCheck;
 

@@ -1,6 +1,5 @@
-C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\WindowsFormsAppUsecase.exe.config
 C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\WindowsFormsAppUsecase.exe
-C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\WindowsFormsAppUsecase.pdb
+C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\WindowsFormsAppUsecase.exe.config
 C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\BouncyCastle.Crypto.dll
 C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\Google.Protobuf.dll
 C:\Users\YuvarajuT\RiderProjects\WindowsFormsAppUsecase\WindowsFormsAppUsecase\bin\Release\K4os.Compression.LZ4.dll

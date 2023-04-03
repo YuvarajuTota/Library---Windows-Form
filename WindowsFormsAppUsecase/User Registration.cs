@@ -1,55 +1,55 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.Text.RegularExpressions;
+
 namespace WindowsFormsAppUsecase
 {
     public partial class UserRegistration : Form
     {
         private TextBox txtEmailAddress;
+
         public UserRegistration()
         {
             InitializeComponent();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtFirstName.Text) || string.IsNullOrEmpty(txtLastName.Text) ||
                 string.IsNullOrEmpty(txtEmailAddress.Text) || string.IsNullOrEmpty(txtPassword.Text) ||
                 string.IsNullOrEmpty(txtCnf.Text))
             {
-                if (txtPassword.Text != txtCnf.Text)
-                {
-                    MessageBox.Show(@"Password didn't matched! Please try again...");
-                }
+                if (txtPassword.Text != txtCnf.Text) MessageBox.Show(@"Password didn't matched! Please try again...");
                 MessageBox.Show(@"Please fill in all fields to submit the form");
             }
             else
             {
                 MessageBox.Show(@"Registration Successful...");
-                string connectionString = "server=localhost;uid=root;pwd=Yuvi@12345;database=ado";
-                MySqlConnection connection = new MySqlConnection(connectionString);
+                var connectionString = "server=localhost;uid=root;pwd=Yuvi@12345;database=ado";
+                var connection = new MySqlConnection(connectionString);
                 try
                 {
                     connection.Open();
-                    string sql =
+                    var sql =
                         "INSERT INTO user (FirstName, LastName, EmailAddress, Password, ConfirmPassword) VALUES (@FirstName, @LastName, @EmailAddress, @Password, @ConfirmPassword)";
-                    MySqlCommand cmd = new MySqlCommand(sql, connection);
+                    var cmd = new MySqlCommand(sql, connection);
                     // Set parameters
                     cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                     cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                     cmd.Parameters.AddWithValue("@EmailAddress", txtEmailAddress.Text);
                     cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                     cmd.Parameters.AddWithValue("@ConfirmPassword", txtCnf.Text);
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    var reader = cmd.ExecuteReader();
                     txtFirstName.Text = "";
                     txtLastName.Text = "";
                     txtEmailAddress.Text = "";
                     txtPassword.Text = "";
                     txtCnf.Text = "";
-                    LoginPage loginPage = new LoginPage();
-                    this.Hide();
+                    var loginPage = new LoginPage();
+                    Hide();
                     loginPage.Show();
                 }
                 catch (Exception ex)
@@ -63,25 +63,24 @@ namespace WindowsFormsAppUsecase
                 }
             }
         }
+
         private void label10_Click(object sender, EventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
-            this.Hide();
+            var loginPage = new LoginPage();
+            Hide();
             loginPage.Show();
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            string exitMessage = "Are you sure! You want to exit. Your data will be lost...";
+            var exitMessage = "Are you sure! You want to exit. Your data will be lost...";
             DialogResult userExit;
             userExit = MessageBox.Show(exitMessage, @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (userExit == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            if (userExit == DialogResult.Yes) Application.Exit();
         }
+
         private void txtEmailAddress_TextChanged(object sender, EventArgs e)
         {
-
             var pattern = @"^[a-zA-Z0-9.]+@gmail\.com$";
             if (Regex.IsMatch(txtEmailAddress.Text, pattern))
             {
@@ -96,15 +95,16 @@ namespace WindowsFormsAppUsecase
                 errEmail.Text = @"Invalid Email format! Email should ends with @gmail.com";
                 errorProvider1.SetError(txtEmailAddress, "Please provide valid Email");
             }
-            string query = "Select EmailAddress from user where EmailAddress = @EmailAddress";
-            string connectionString = "server=localhost;uid=root;pwd=Yuvi@12345;database=ado";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+
+            var query = "Select EmailAddress from user where EmailAddress = @EmailAddress";
+            var connectionString = "server=localhost;uid=root;pwd=Yuvi@12345;database=ado";
+            using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@EmailAddress", txtEmailAddress.Text);
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -121,9 +121,11 @@ namespace WindowsFormsAppUsecase
                         }
                     }
                 }
+
                 connection.Close();
             }
         }
+
         private void txtCnf_TextChanged(object sender, EventArgs e)
         {
             var password = txtPassword.Text;
@@ -143,6 +145,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider2.SetError(txtCnf, "");
             }
         }
+
         private void txtFirstName_Validating(object sender, CancelEventArgs e)
         {
             var firstName = txtFirstName.Text;
@@ -158,6 +161,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtFirstName, "");
             }
         }
+
         private void txtLastName_Validating(object sender, CancelEventArgs e)
         {
             var lastName = txtLastName.Text;
@@ -173,6 +177,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtLastName, "");
             }
         }
+
         private void txtEmailAddress_Validating(object sender, CancelEventArgs e)
         {
             var email = txtEmailAddress.Text;
@@ -188,6 +193,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtEmailAddress, "");
             }
         }
+
         private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
             var password = txtPassword.Text;
@@ -203,6 +209,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtPassword, "");
             }
         }
+
         private void txtCnf_Validating(object sender, CancelEventArgs e)
         {
             var cnf = txtCnf.Text;
@@ -218,6 +225,7 @@ namespace WindowsFormsAppUsecase
                 errorProvider1.SetError(txtCnf, "");
             }
         }
+
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             var password = txtPassword.Text;
