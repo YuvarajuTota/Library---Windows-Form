@@ -48,6 +48,7 @@ namespace WindowsFormsAppUsecase
             this.errCnf = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +92,7 @@ namespace WindowsFormsAppUsecase
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(250, 377);
+            this.btnCancel.Location = new System.Drawing.Point(242, 420);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 54);
             this.btnCancel.TabIndex = 8;
@@ -104,7 +105,7 @@ namespace WindowsFormsAppUsecase
             this.btnSubmit.BackColor = System.Drawing.Color.Lime;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(430, 377);
+            this.btnSubmit.Location = new System.Drawing.Point(426, 420);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(115, 54);
             this.btnSubmit.TabIndex = 9;
@@ -187,11 +188,24 @@ namespace WindowsFormsAppUsecase
             this.errorProvider2.ContainerControl = this;
             this.errorProvider2.Icon = ((System.Drawing.Icon)(resources.GetObject("errorProvider2.Icon")));
             // 
+            // label5
+            // 
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Blue;
+            this.label5.Location = new System.Drawing.Point(273, 382);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(302, 20);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Use a system generated password";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // Forgot_Password
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 499);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.errCnf);
             this.Controls.Add(this.errPass);
             this.Controls.Add(this.emailCheck);
@@ -213,6 +227,8 @@ namespace WindowsFormsAppUsecase
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label5;
 
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;

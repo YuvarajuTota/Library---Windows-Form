@@ -4,7 +4,8 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
+using  System.Net;
+using System.Net.Mail;
 namespace WindowsFormsAppUsecase
 {
     public partial class Forgot_Password : Form
@@ -209,6 +210,26 @@ namespace WindowsFormsAppUsecase
                     connection.Close();
                 }
             }
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+            string fromEmail = "yuvarajutota123@gmail.com";
+            string password = "cbmazedezhtcgsqn";
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromEmail);
+            message.Subject = "Reset Password";
+            message.To.Add(new MailAddress("yuvaraju.tota@amzur.com"));
+            message.Body = "<html><body> Testing purpose </body></html>";
+            message.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromEmail, password),
+                EnableSsl = true,
+            };
+            smtpClient.Send(message);
+            MessageBox.Show(@"Password has been sent to your Email!...");
         }
     }
 }
